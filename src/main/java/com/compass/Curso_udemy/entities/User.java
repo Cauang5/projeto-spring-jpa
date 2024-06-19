@@ -1,27 +1,25 @@
 package com.compass.Curso_udemy.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-@Table (name = "users")
+@Table (name = "tb_users")
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class User {
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String email;
