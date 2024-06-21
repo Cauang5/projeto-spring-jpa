@@ -19,7 +19,7 @@ import java.time.Instant;
 public class Order implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long Id;
 
