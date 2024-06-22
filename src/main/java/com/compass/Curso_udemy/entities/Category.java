@@ -1,5 +1,6 @@
 package com.compass.Curso_udemy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,13 @@ public class Category implements Serializable {
 
     private String name;
 
-    //@Getter
-    //private Set<Product> products = new HashSet<>();
+    @Getter
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    private Set<Product> products = new HashSet<>();
+
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
