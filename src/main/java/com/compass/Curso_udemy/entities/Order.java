@@ -2,6 +2,7 @@ package com.compass.Curso_udemy.entities;
 
 import com.compass.Curso_udemy.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonPropertyOrder({"id", "moment", "orderStatus", "client", "items"})
 public class Order implements Serializable {
 
     @Id

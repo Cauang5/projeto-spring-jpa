@@ -1,5 +1,6 @@
 package com.compass.Curso_udemy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class Product implements Serializable {
     @EqualsAndHashCode.Include
     @Getter
     private Long id;
+
     private String name;
     private String description;
     private Double price;
@@ -33,6 +35,10 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.product")
+    @JsonIgnore
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -40,5 +46,16 @@ public class Product implements Serializable {
         this.price = price;
         this.imgUrl = imgUrl;
     }
+
+    @JsonIgnore
+    public Set<Order> getOrder(){
+        Set<Order> set = new HashSet<>();
+        for(OrderItem x : items){
+            set.add(x.getOrder());
+        }
+        return set;
+    }
+
+
 
 }
