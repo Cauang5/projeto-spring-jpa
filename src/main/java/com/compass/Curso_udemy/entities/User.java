@@ -7,12 +7,15 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 @Table (name = "tb_users")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User implements Serializable {
 
     @Id
@@ -21,20 +24,12 @@ public class User implements Serializable {
     @Getter
     private Long id;
 
-    @Getter
-    @Setter
     private String name;
 
-    @Getter
-    @Setter
     private String email;
 
-    @Getter
-    @Setter
     private String phone;
 
-    @Getter
-    @Setter
     private String password;
 
     @JsonIgnore
