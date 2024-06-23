@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_order_item")
@@ -26,13 +27,13 @@ public class OrderItem implements Serializable {
 
     @Getter
     @Setter
-    private Double price;
+    private BigDecimal price;
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+    public OrderItem(Order order, Product product, Integer quantity, BigDecimal price) {
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
-        this.price = product.getPrice();
+        this.price = price;
     }
 
     @JsonIgnore
@@ -53,8 +54,8 @@ public class OrderItem implements Serializable {
         id.setProduct(product);
     }
 
-    public Double getSubTotal(){
-        return price * quantity;
+    public BigDecimal getSubTotal(){
+        return price.multiply(new BigDecimal(quantity));
     }
 
 }

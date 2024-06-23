@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product implements Serializable {
 
@@ -25,7 +25,7 @@ public class Product implements Serializable {
 
     private String name;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private String imgUrl;
 
     @Getter
@@ -39,7 +39,7 @@ public class Product implements Serializable {
     @JsonIgnore
     private Set<OrderItem> items = new HashSet<>();
 
-    public Product(Long id, String name, String description, Double price, String imgUrl) {
+    public Product(Long id, String name, String description, BigDecimal price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
